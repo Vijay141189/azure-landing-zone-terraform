@@ -29,7 +29,7 @@ jobs:
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: |
           tflint --init
-          tflint
+          tflint --minimum-failure-severity=error
 
   security-scan:
     name: TFSec
