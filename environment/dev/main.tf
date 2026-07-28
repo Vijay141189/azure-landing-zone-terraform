@@ -50,4 +50,6 @@ module "azurerm_virtual_machine" {
   depends_on = [module.azurerm_subnet, module.azurerm_public_IP, module.azurerm_resource_group, module.azurerm_key_vault]
   source     = "../../module/azurerm_virtual_machine"
   vms        = local.vms_with_password
+
+  tags = local.common_tags
 }

@@ -37,6 +37,12 @@ subnets = {
     virtual_network_name = "Terraformvnet1-prod"
     address_prefixes     = ["10.0.2.0/24"]
   }
+  subnet3 = {
+    name                 = "dbsubnet1-prod"
+    resource_group_name  = "resourcegroup1411-prod"
+    virtual_network_name = "Terraformvnet1-prod"
+    address_prefixes     = ["10.0.3.0/24"]
+}
 }
 
 public_ips = {
@@ -89,6 +95,22 @@ vms = {
     version              = "latest"
     publisher            = "Canonical"
   }
+  vm3 = {
+    name                 = "vm-3-prod"
+    resource_group_name  = "resourcegroup1411-prod"
+    location             = "southeastasia"
+    size                 = "Standard_B2s"
+    admin_username       = "adminuser"
+    # admin_password ab yaha nahi likha jaata — Key Vault module isse generate/inject karta hai
+    subnet_name          = "backendsubnet1-prod"
+    public_ip_name       = "publicip2-prod"
+    virtual_network_name = "Terraformvnet1-prod"
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+    offer                = "UbuntuServer"
+    sku                  = "18.04-LTS"
+    version              = "latest"
+    publisher            = "Canonical"
 }
 
 key_vaults = {
@@ -100,4 +122,5 @@ key_vaults = {
     purge_protection_enabled    = true
     soft_delete_retention_days  = 90
   }
+}
 }

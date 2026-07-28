@@ -2,14 +2,9 @@ name: Terraform CI/CD - Azure Landing Zone
 
 on:
   push:
-    branches:
-      - main
-      - feature/**
-
+    branches: [main, feature/*]
   pull_request:
-    branches:
-      - main
-
+    branches: [main]
   workflow_dispatch:
 
 env:
@@ -17,7 +12,7 @@ env:
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-  TF_WORKING_DIR: Environment/dev
+  TF_WORKING_DIR: environment/dev
 
 jobs:
   lint:
