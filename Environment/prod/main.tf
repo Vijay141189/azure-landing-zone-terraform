@@ -27,8 +27,24 @@ module "azurerm_public_IP" {
   public_ips = var.public_ips
 }
 
+module "azurerm_key_vault" {
+  depends_on = [module.azurerm_resource_group]
+  source     = "../module/azurerm_key_vault"
+  key_vaults = var.key_vaults
+}
+
+# vms input me admin_password ko Key Vault se generate hue password se replace kar rahe hain,
+# taaki plaintext password kahin tfvars me na rahe
+locals {
+  vms_with_password = {
+    for k, v in var.vms : k => merge(v, {
+      admin_password = module.azurerm_key_vault.vm_admin_passwords["key_vault1"]
+    })
+  }
+}
+
 module "azurerm_virtual_machine" {
-  depends_on = [module.azurerm_subnet, module.azurerm_public_IP, module.azurerm_resource_group]
+  depends_on = [module.azurerm_subnet, module.azurerm_public_IP, module.azurerm_resource_group, module.azurerm_key_vault]
   source     = "../module/azurerm_virtual_machine"
-  vms        = var.vms
+  vms        = local.vms_with_password
 }
