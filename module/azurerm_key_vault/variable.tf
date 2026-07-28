@@ -11,3 +11,6 @@ variable "key_vaults" {
     object_id                   = optional(string) # blank chodo toh terraform chalane wale user/SP ko access milega; specify karo toh us user/group/SP ko access milega
   }))
 }
+variable "tags" {
+  type = map(string)
+}

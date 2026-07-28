@@ -5,3 +5,4 @@ variable "subnets"{}
 variable "public_ips" {}
 variable "vms" {}
 variable "key_vaults" {}
+variable "tags" {}

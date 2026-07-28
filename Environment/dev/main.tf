@@ -31,7 +31,9 @@ module "azurerm_public_IP" {
 module "azurerm_key_vault" {
   depends_on = [module.azurerm_resource_group]
   source     = "../../module/azurerm_key_vault"
+
   key_vaults = var.key_vaults
+  tags       = local.common_tags
 }
 
 # vms input me admin_password ko Key Vault se generate hue password se replace kar rahe hain,
