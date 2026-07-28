@@ -17,6 +17,7 @@ resource "azurerm_network_interface" "nic" {
 resource "azurerm_linux_virtual_machine" "vm" {
   for_each             = var.vms
   name                 = each.value.name
+  computer_name        = replace(each.value.name, "_", "-")
   resource_group_name  = each.value.resource_group_name
   location             = each.value.location
   size                 = each.value.size
