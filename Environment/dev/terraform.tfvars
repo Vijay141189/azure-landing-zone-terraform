@@ -37,6 +37,12 @@ subnets = {
     virtual_network_name = "Terraformvnet1-dev"
     address_prefixes     = ["10.0.2.0/24"]
   }
+  subnet3 = {
+    name                 = "dbsubnet1-dev"
+    resource_group_name  = "resourcegroup1411-dev"
+    virtual_network_name = "Terraformvnet1-dev"
+    address_prefixes     = ["10.0.3.0/24"]
+  }
 }
 
 public_ips = {
@@ -81,6 +87,23 @@ vms = {
     # admin_password ab yaha nahi likha jaata — Key Vault module isse generate/inject karta hai
     subnet_name          = "backendsubnet1-dev"
     public_ip_name       = "publicip2-dev"
+    virtual_network_name = "Terraformvnet1-dev"
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+    offer                = "UbuntuServer"
+    sku                  = "18.04-LTS"
+    version              = "latest"
+    publisher            = "Canonical"
+  }
+  vm3 = {
+    name                 = "vm-3-dev"
+    resource_group_name  = "resourcegroup1411-dev"
+    location             = "southeastasia"
+    size                 = "Standard_B2s"
+    admin_username       = "adminuser"
+    # admin_password ab yaha nahi likha jaata — Key Vault module isse generate/inject karta hai
+    subnet_name          = "dbsubnet1-dev"
+    public_ip_name       = ""
     virtual_network_name = "Terraformvnet1-dev"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
