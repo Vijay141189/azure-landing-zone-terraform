@@ -2,9 +2,14 @@ name: Terraform CI/CD - Azure Landing Zone
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - feature/latest
+
   pull_request:
-    branches: [main]
+    branches:
+      - main
+
   workflow_dispatch:
 
 env:
